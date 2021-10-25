@@ -1,6 +1,7 @@
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
+var playerMoney = 10;
 
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
@@ -11,103 +12,69 @@ var enemyAttack = 12;
 
 var fight = function () {
   // Alert players that the fight is on!
-  window.alert("Welcome to Robot Gladiators!");
+  start_position: while (true) {
 
-  // Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-  enemyHealth = enemyHealth - playerAttack;
+    window.alert("Welcome to Robot Gladiators!");
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+    console.log("Player chose to " + promptFight);
 
-  // Enemy health status
-  console.log(
-    playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-  );
+    switch (promptFight.toUpperCase()) {
+      case "FIGHT":
+        break;
+      case "SKIP":
+        var confirmSkip = window.confirm("You chicken!...Sure you want to quit??");
+        if (confirmSkip) {
+          window.alert(playerName + " has elected to bow out.  Goodbye!")
+          playerMoney = playerMoney - 2;
+          return;
+        } else {
+          fight();
+          return; // BE SURE TO END FIGHT after skipping the "SKIP"
+        }
+      default:
+        window.alert("You need to choose a valid option. Try again!");
+        continue start_position;
+    };
+    break;
+  };
 
-  // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-  playerHealth = playerHealth - enemyAttack;
+  while (enemyHealth >= 0 && playerHealth >= 0) {
 
-  // Player health status
-  console.log(
-    enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-  );
+    // Reduce enemy health by the severity of the attack
+    enemyHealth = enemyHealth - playerAttack;
 
-  // Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-  enemyHealth = enemyHealth - playerAttack;
+    // Enemy health status
+    console.log(
+      playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+    );
 
-  // Enemy health status
-  console.log(
-    playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-  );
+    // Reduce player health by the severity of the attack
+    playerHealth = playerHealth - enemyAttack;
 
-  // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-  playerHealth = playerHealth - enemyAttack;
+    // Player health status
+    console.log(
+      enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    );
 
-  // Player health status
-  console.log(
-    enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-  );
-
-  // Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-  enemyHealth = enemyHealth - playerAttack;
-
-  // Enemy health status
-  console.log(
-    playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-  );
-
-  // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-  playerHealth = playerHealth - enemyAttack;
-
-  // Player health status
-  console.log(
-    enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-  );
-
-  // Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-  enemyHealth = enemyHealth - playerAttack;
-
-  // Enemy health status
-  console.log(
-    playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-  );
-
-  // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-  playerHealth = playerHealth - enemyAttack;
-
-  // Player health status
-  console.log(
-    enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-  );
-
-  // Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-  enemyHealth = enemyHealth - playerAttack;
-
-  // Enemy health status
-  console.log(
-    playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-  );
-
-  // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-  playerHealth = playerHealth - enemyAttack;
-
-  // Player health status
-  console.log(
-    enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-  );
-
-  // check enemy's health
-  if (enemyHealth <= 0) {
-    window.alert(enemyName + " has died!");
-  }
-  else {
-    window.alert(enemyName + " still has " + enemyHealth + " health left.");
-  }
-  // check player's health
-  if (playerHealth <= 0) {
-    window.alert(playerName + " has died!");
-  }
-  else {
-    window.alert(playerName + " still has " + playerHealth + " health left.");
-  }
-
+    // check enemy's health
+    if (enemyHealth <= 0) {
+      window.alert(enemyName + " has died!");
+      console.log("FIGHT OVER");
+      break;
+    }
+    else {
+      window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    }
+    // check player's health
+    if (playerHealth <= 0) {
+      window.alert(playerName + " has died!");
+      console.log("FIGHT OVER");
+      break;
+    }
+    else {
+      window.alert(playerName + " still has " + playerHealth + " health left.");
+    }
+  };
 };
 
 fight();
