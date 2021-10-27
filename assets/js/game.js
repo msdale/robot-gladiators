@@ -1,5 +1,24 @@
+// function to retrieve the player robot name
+var getPlayerName = function () {
+  var name = "";
+  var attempts = 0;
+
+  while (name === "" || name === null) {
+    attempts += 1;
+    if (attempts > 1) {
+      name = prompt("I need something to continue the game...\nPlease enter your robot's name");
+    } else {
+      name = prompt("What is your robot's name?");
+    }
+
+  }
+
+  console.log("Your robot's name is " + name);
+  return name;
+}
+
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 10,
